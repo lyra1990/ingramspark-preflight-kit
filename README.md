@@ -41,10 +41,22 @@ node generate-test-pdfs.mjs
    - 100% of referenced fonts embed their glyph streams (`/FontFile`, `/FontFile2`, `/FontFile3`).
    - Zero `/Subtype /Link` annotations, `/JavaScript` actions, `/Encrypt` trailers, or LZW-compressed streams.
 
-## Free Browser Inspector (Zero Upload)
+## POD Cover Spine & Full-Wrap Bleed Formula (`node pod-spine-calculator.mjs`)
 
-To test these fixtures visually with an 18-point ISO 15930-1 scanner and interactive pixel-level 240% CMYK TAC heatmap directly in your browser (`0 bytes` uploaded):
-- **[PrintPDFX — Free Local PDF/X-1a Preflight & TAC Heatmap](https://printpdfx.com/)**
+Most IngramSpark and Amazon KDP cover dimension rejections happen because changing interior page count or switching from White (`0.002252"/page`) to Cream (`0.0025"/page`) shifts total full-wrap cover width:
+
+```text
+Spine Width (in)      = Interior Pages × Paper Stock Caliper
+Full Cover Width (in) = (2 × Trim Width) + Spine Width + (2 × 0.125" Bleed)
+Full Cover Height(in) = Trim Height + (2 × 0.125" Bleed)
+```
+
+Run `node pod-spine-calculator.mjs 6 9 320 cream` to print exact KDP & IngramSpark full-wrap dimensions in inches, millimeters, and PDF points (`72 pt/in`).
+
+## Free Browser Inspector & Zero-Content POD Rejection Solver
+
+To test these fixtures visually with an 18-point ISO 15930-1 scanner, interactive pixel-level 240% CMYK TAC heatmap, and **Zero-Content POD Rejection & Cover Spine Auto-Solver** directly in your browser (`0 PDF bytes` uploaded):
+- **[PrintPDFX — Free Local PDF/X-1a Preflight, 240% TAC Map & POD Rejection Solver](https://printpdfx.com/)**
 
 ## License
 
